@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellence Advocacia | Justiça Digital de Elite</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Framer Motion (via CDN) -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            light: '#C5A059',
+                            dark: '#8E6E3A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #050505;
+            color: #d4d4d8;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #C5A059 0%, #8E6E3A 100%);
+        }
+        .gold-text {
+            color: #C5A059;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #f4f4f5 0%, #71717a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 40s linear infinite;
+            display: flex;
+            width: fit-content;
+        }
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+        }
+        .animate-pulse-gold {
+            animation: pulse-gold 2s infinite;
+        }
+        .bento-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.5s ease;
+        }
+        .bento-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-light selection:text-black">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-8 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i data-lucide="scale" class="w-8 h-8 gold-text"></i>
+                <span class="font-serif text-2xl font-bold tracking-tighter text-white">
+                    EXCELLENCE<span class="gold-text">.</span>
+                </span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium tracking-widest uppercase">
+                <a href="#home" class="hover:gold-text transition-colors">Início</a>
+                <a href="#servicos" class="hover:gold-text transition-colors">Serviços</a>
+                <a href="#diferenciais" class="hover:gold-text transition-colors">Diferenciais</a>
+                <a href="#contato" class="hover:gold-text transition-colors">Contato</a>
+                <button class="gold-gradient text-black px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-transform">
+                    Falar com Especialista
+                </button>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass border-b py-8 flex flex-col items-center gap-6">
+            <a href="#home" class="mobile-link">Início</a>
+            <a href="#servicos" class="mobile-link">Serviços</a>
+            <a href="#diferenciais" class="mobile-link">Diferenciais</a>
+            <a href="#contato" class="mobile-link">Contato</a>
+            <button class="gold-gradient text-black px-8 py-3 rounded-full font-bold">
+                Falar com Especialista
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/70 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=2000" alt="Luxury Law Office" class="w-full h-full object-cover">
+        </div>
+
+        <div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <span class="gold-text uppercase tracking-[0.3em] text-xs font-bold mb-6 block">
+                    Justiça Digital de Alta Performance
+                </span>
+                <h1 class="font-serif text-5xl md:text-8xl text-white leading-[0.9] tracking-tighter mb-8">
+                    Defesa de Elite para o <br>
+                    <span class="italic text-gradient">Seu Patrimônio.</span>
+                </h1>
+                <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+                    Atendimento exclusivo em todo o Brasil com processos 100% digitais. 
+                    Segurança jurídica e excelência em cada detalhe.
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <a href="#contato" class="gold-gradient text-black px-10 py-5 rounded-full font-bold text-lg animate-pulse-gold hover:scale-105 transition-transform flex items-center gap-2">
+                        Agendar Consulta Online <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#servicos" class="glass text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">
+                        Conhecer Especialidades
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+            <div class="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1 animate-bounce">
+                <div class="w-1 h-2 bg-white rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authority Bar -->
+    <div class="py-12 border-y border-white/5 bg-[#080808] overflow-hidden">
+        <div class="animate-marquee">
+            <div class="flex items-center gap-20 px-10">
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="shield-check" class="gold-text"></i> +10 Anos de Mercado
+                </span>
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="globe" class="gold-text"></i> Atendimento Nacional
+                </span>
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="users" class="gold-text"></i> +5.000 Clientes Satisfeitos
+                </span>
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="briefcase" class="gold-text"></i> 100% Digital
+                </span>
+            </div>
+            <div class="flex items-center gap-20 px-10">
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="shield-check" class="gold-text"></i> +10 Anos de Mercado
+                </span>
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="globe" class="gold-text"></i> Atendimento Nacional
+                </span>
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="users" class="gold-text"></i> +5.000 Clientes Satisfeitos
+                </span>
+                <span class="text-zinc-600 font-serif text-2xl italic flex items-center gap-4 whitespace-nowrap">
+                    <i data-lucide="briefcase" class="gold-text"></i> 100% Digital
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section id="servicos" class="py-32 bg-[#080808]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div class="max-w-2xl">
+                    <span class="gold-text uppercase tracking-widest text-xs font-bold mb-4 block">Especialidades</span>
+                    <h2 class="font-serif text-4xl md:text-6xl text-white tracking-tight">Soluções Jurídicas Sob Medida</h2>
+                </div>
+                <p class="text-zinc-500 max-w-sm">
+                    Nossa equipe multidisciplinar está pronta para atuar nas causas mais complexas com precisão técnica e visão estratégica.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 border border-white/5">
+                <div class="p-12 bg-[#080808] group cursor-pointer hover:bg-white/[0.02] transition-colors">
+                    <i data-lucide="users" class="text-zinc-600 group-hover:gold-text transition-colors mb-8"></i>
+                    <h3 class="text-2xl font-serif text-white mb-4 group-hover:translate-x-2 transition-transform duration-300">Direito Civil</h3>
+                    <p class="text-zinc-500 leading-relaxed mb-8">Família, sucessões, inventários e contratos complexos.</p>
+                    <div class="flex items-center gap-2 gold-text text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                        Saiba mais <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="p-12 bg-[#080808] group cursor-pointer hover:bg-white/[0.02] transition-colors">
+                    <i data-lucide="briefcase" class="text-zinc-600 group-hover:gold-text transition-colors mb-8"></i>
+                    <h3 class="text-2xl font-serif text-white mb-4 group-hover:translate-x-2 transition-transform duration-300">Direito Trabalhista</h3>
+                    <p class="text-zinc-500 leading-relaxed mb-8">Defesa estratégica para empregados e empresas.</p>
+                    <div class="flex items-center gap-2 gold-text text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                        Saiba mais <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="p-12 bg-[#080808] group cursor-pointer hover:bg-white/[0.02] transition-colors">
+                    <i data-lucide="scale" class="text-zinc-600 group-hover:gold-text transition-colors mb-8"></i>
+                    <h3 class="text-2xl font-serif text-white mb-4 group-hover:translate-x-2 transition-transform duration-300">Direito Empresarial</h3>
+                    <p class="text-zinc-500 leading-relaxed mb-8">Fusões, aquisições e estruturação societária.</p>
+                    <div class="flex items-center gap-2 gold-text text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                        Saiba mais <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="p-12 bg-[#080808] group cursor-pointer hover:bg-white/[0.02] transition-colors">
+                    <i data-lucide="shield-check" class="text-zinc-600 group-hover:gold-text transition-colors mb-8"></i>
+                    <h3 class="text-2xl font-serif text-white mb-4 group-hover:translate-x-2 transition-transform duration-300">Direito Tributário</h3>
+                    <p class="text-zinc-500 leading-relaxed mb-8">Planejamento fiscal e gestão de impostos.</p>
+                    <div class="flex items-center gap-2 gold-text text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                        Saiba mais <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="p-12 bg-[#080808] group cursor-pointer hover:bg-white/[0.02] transition-colors">
+                    <i data-lucide="scale" class="text-zinc-600 group-hover:gold-text transition-colors mb-8"></i>
+                    <h3 class="text-2xl font-serif text-white mb-4 group-hover:translate-x-2 transition-transform duration-300">Direito Penal</h3>
+                    <p class="text-zinc-500 leading-relaxed mb-8">Defesa especializada em inquéritos e ações penais.</p>
+                    <div class="flex items-center gap-2 gold-text text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                        Saiba mais <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="p-12 bg-[#080808] group cursor-pointer hover:bg-white/[0.02] transition-colors">
+                    <i data-lucide="quote" class="text-zinc-600 group-hover:gold-text transition-colors mb-8"></i>
+                    <h3 class="text-2xl font-serif text-white mb-4 group-hover:translate-x-2 transition-transform duration-300">Indenizações</h3>
+                    <p class="text-zinc-500 leading-relaxed mb-8">Danos morais, materiais e responsabilidade civil.</p>
+                    <div class="flex items-center gap-2 gold-text text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                        Saiba mais <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section id="diferenciais" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 text-center">
+                <span class="gold-text uppercase tracking-widest text-xs font-bold mb-4 block">Por que nos escolher</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-white tracking-tight">O Padrão Ouro da Advocacia</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bento-item flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <div class="w-12 h-12 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="globe" class="text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-white mb-4">Presença Nacional, Foco Individual</h3>
+                        <p class="text-zinc-400">Atendemos clientes em todos os estados do Brasil através de uma plataforma digital segura e intuitiva. A distância não é mais uma barreira para a justiça de qualidade.</p>
+                    </div>
+                    <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2959210?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-50">
+                    </div>
+                </div>
+
+                <div class="bento-item">
+                    <div class="w-12 h-12 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="clock" class="text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif text-white mb-4">Agilidade Digital</h3>
+                    <p class="text-zinc-400">Processos 100% digitais que garantem maior velocidade na tramitação e transparência total para você acompanhar cada passo.</p>
+                </div>
+
+                <div class="bento-item">
+                    <div class="w-12 h-12 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check" class="text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif text-white mb-4">Sigilo Absoluto</h3>
+                    <p class="text-zinc-400">Criptografia de ponta a ponta e protocolos rigorosos de segurança para proteger seus dados e sua privacidade.</p>
+                </div>
+
+                <div class="md:col-span-2 bento-item flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden order-2 md:order-1">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-50">
+                    </div>
+                    <div class="flex-1 order-1 md:order-2">
+                        <div class="w-12 h-12 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="users" class="text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-white mb-4">Atendimento Humanizado</h3>
+                        <p class="text-zinc-400">Embora sejamos digitais, nosso atendimento é focado no ser humano. Você terá um advogado dedicado para entender sua dor e buscar a melhor solução.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <span class="gold-text uppercase tracking-widest text-xs font-bold mb-4 block">Prova Social</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-white tracking-tight">Vozes da Confiança</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-3xl relative">
+                    <i data-lucide="quote" class="absolute top-8 right-8 w-12 h-12 text-white/5"></i>
+                    <div class="flex gap-1 mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-8 leading-relaxed">"O atendimento digital da Excellence superou todas as minhas expectativas. Rapidez e segurança jurídica em um só lugar."</p>
+                    <div>
+                        <h4 class="text-white font-bold">Ricardo Santos</h4>
+                        <p class="text-zinc-500 text-sm uppercase tracking-widest">Empresário</p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-3xl relative">
+                    <i data-lucide="quote" class="absolute top-8 right-8 w-12 h-12 text-white/5"></i>
+                    <div class="flex gap-1 mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-8 leading-relaxed">"Contratamos o escritório para uma reestruturação trabalhista e o resultado foi impecável. Profissionais de altíssimo nível."</p>
+                    <div>
+                        <h4 class="text-white font-bold">Mariana Oliveira</h4>
+                        <p class="text-zinc-500 text-sm uppercase tracking-widest">Diretora de RH</p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-3xl relative">
+                    <i data-lucide="quote" class="absolute top-8 right-8 w-12 h-12 text-white/5"></i>
+                    <div class="flex gap-1 mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-gold-light text-gold-light"></i>
+                    </div>
+                    <p class="text-zinc-300 italic mb-8 leading-relaxed">"A consultoria tributária deles nos poupou milhões em impostos através de um planejamento brilhante. Recomendo fortemente."</p>
+                    <div>
+                        <h4 class="text-white font-bold">Carlos Eduardo</h4>
+                        <p class="text-zinc-500 text-sm uppercase tracking-widest">Investidor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contato" class="py-32 px-6 bg-[#080808]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div>
+                    <span class="gold-text uppercase tracking-widest text-xs font-bold mb-4 block">Contato</span>
+                    <h2 class="font-serif text-4xl md:text-6xl text-white tracking-tight mb-8">Vamos Conversar?</h2>
+                    <p class="text-zinc-400 text-lg mb-12 leading-relaxed">
+                        Estamos prontos para ouvir seu caso e oferecer a melhor estratégia jurídica. Preencha o formulário ou utilize nossos canais diretos.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 glass rounded-xl flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="gold-text w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Telefone</h4>
+                                <p class="text-zinc-500">0800 123 4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 glass rounded-xl flex items-center justify-center shrink-0">
+                                <i data-lucide="mail" class="gold-text w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">E-mail</h4>
+                                <p class="text-zinc-500">contato@excellence.adv.br</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 glass rounded-xl flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="gold-text w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Localização</h4>
+                                <p class="text-zinc-500">Atendimento 100% Digital em todo o Brasil</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:p-12 rounded-[2rem]">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest text-zinc-500 font-bold">Nome Completo</label>
+                                <input type="text" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-[#C5A059] outline-none transition-colors" placeholder="Seu nome">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest text-zinc-500 font-bold">E-mail</label>
+                                <input type="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-[#C5A059] outline-none transition-colors" placeholder="seu@email.com">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-zinc-500 font-bold">Assunto</label>
+                            <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-[#C5A059] outline-none transition-colors appearance-none">
+                                <option>Direito Civil</option>
+                                <option>Direito Trabalhista</option>
+                                <option>Direito Empresarial</option>
+                                <option>Outros</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-zinc-500 font-bold">Mensagem</label>
+                            <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-[#C5A059] outline-none transition-colors" placeholder="Como podemos ajudar?"></textarea>
+                        </div>
+                        <button type="button" class="w-full gold-gradient text-black py-5 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
+                            Enviar Mensagem <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 bg-[#030303]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-8">
+                        <i data-lucide="scale" class="w-8 h-8 gold-text"></i>
+                        <span class="font-serif text-2xl font-bold tracking-tighter text-white">
+                            EXCELLENCE<span class="gold-text">.</span>
+                        </span>
+                    </div>
+                    <p class="text-zinc-500 max-w-sm leading-relaxed">
+                        Redefinindo a advocacia para a era digital. Luxo, exclusividade e resultados sólidos para quem não aceita menos que a excelência.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Links Rápidos</h4>
+                    <ul class="space-y-4 text-zinc-500 text-sm">
+                        <li><a href="#servicos" class="hover:gold-text transition-colors">Especialidades</a></li>
+                        <li><a href="#diferenciais" class="hover:gold-text transition-colors">Diferenciais</a></li>
+                        <li><a href="#contato" class="hover:gold-text transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-sm">Contato</h4>
+                    <ul class="space-y-4 text-zinc-500 text-sm">
+                        <li>contato@excellence.adv.br</li>
+                        <li>0800 123 4567</li>
+                        <li>Atendimento Nacional</li>
+                        <li>Seg - Sex: 09h às 18h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-6">
+                <p class="text-zinc-600 text-xs uppercase tracking-widest">
+                    © 2026 Excellence Advocacia. Todos os direitos reservados.
+                </p>
+                <div class="flex gap-8 text-zinc-600 text-xs uppercase tracking-widest">
+                    <a href="#" class="hover:text-white transition-colors">Privacidade</a>
+                    <a href="#" class="hover:text-white transition-colors">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5500000000000" target="_blank" class="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform">
+        <i data-lucide="message-circle" class="text-white w-8 h-8"></i>
+        <span class="absolute -top-2 -left-2 w-5 h-5 bg-red-500 rounded-full border-2 border-white flex items-center justify-center text-[10px] text-white font-bold">1</span>
+    </a>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass', 'py-4', 'border-b');
+                navbar.classList.remove('py-8', 'bg-transparent');
+            } else {
+                navbar.classList.remove('glass', 'py-4', 'border-b');
+                navbar.classList.add('py-8', 'bg-transparent');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Simple Reveal Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 1s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
